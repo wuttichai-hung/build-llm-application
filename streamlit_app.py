@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import GoogleGenerativeAI
 
 from dotenv import load_dotenv
 load_dotenv(override=True)
@@ -18,7 +18,7 @@ prompt_template = ChatPromptTemplate.from_messages([
     ('system', "Translate the following into {language}:"),
     ('user', 'Text: {text}')
 ])
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest", temperature=temperature)
+llm = GoogleGenerativeAI(model="gemini-1.5-pro-latest", temperature=temperature)
 parser = StrOutputParser()
 chain = prompt_template | llm | parser
 
